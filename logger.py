@@ -23,5 +23,6 @@ class Logger:
     def _logg(self, category: LogCategory, message, who, datetime):
         with open(self.path_to_log, 'a') as logfile:
             logfile.write('Hello')
+            # ToDo: write to file
 
 

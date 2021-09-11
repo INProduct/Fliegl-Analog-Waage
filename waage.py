@@ -1,6 +1,7 @@
 from hx711 import HX711
 import json
 
+config_file = '/etc/weight_config.json'
 
 class Waage:
 
@@ -12,9 +13,10 @@ class Waage:
         self.tara_weight = 0
         self._cal_factor = 1
         self._cal_factor_res = 1
+        self.restore_data()
 
     def get_raw_weight(self):
-        return self.hx711.read() // self.count_cells if self.hx711.is_ready() else None
+        return self.hx711.read() // self.count_cells
 
     def get_unscaled_weight(self):
         return self.get_raw_weight() - self._zeropoint
@@ -30,17 +32,46 @@ class Waage:
 
     def set_tara(self):
         self.tara_weight = self.get_scaled_weight()
+        self.save_data()
 
     def set_calibration(self, known_weight):
         self._cal_factor = self.get_unscaled_weight() / known_weight
         self._cal_factor_res = 1 / self._cal_factor
+        self.save_data()
 
     def set_zeropoint(self):
         self._zeropoint = self.get_raw_weight()
+        self.save_data()
 
     def set_count_cells(self, cells: int):
         if cells > 0:
             self.count_cells = cells
+            self.save_data()
 
     def save_data(self):
-        pass
+        weight_data = {
+            'count_cells': self.count_cells,
+            'zeropoint': self._zeropoint,
+            'cal_factor': self._cal_factor,
+            'cal_factor_res': self._cal_factor_res,
+            'tara_weight': self.tara_weight,
+
+        }
+        js = json.dumps(weight_data)
+        with open(config_file, 'w') as file:
+            file.write(js)
+
+    def restore_data(self):
+        try:
+            with open(config_file, 'r') as file:
+                js = file.read()
+        except:
+            # ToDo Logger.log
+            return False
+        js = json.loads(js)
+        self.count_cells = js['count_cells']
+        self._zeropoint = js['zeropoint']
+        self._cal_factor = js['cal_factor']
+        self._cal_factor_res = js['cal_factor_res']
+        self.tara_weight = js['tara_weight']
+        return True

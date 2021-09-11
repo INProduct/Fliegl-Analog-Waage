@@ -1,7 +1,7 @@
 from machine import RTC
 
 
-class Timer:
+class STimer:
 
     def __init__(self, is_on, period=60, offset=0):
         '''
