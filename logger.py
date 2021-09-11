@@ -1,4 +1,4 @@
-
+import json
 
 class LogCategory:
     ERROR = 1
@@ -9,7 +9,7 @@ class LogCategory:
 class Logger:
 
     def __init__(self):
-        self.path_to_log = '/var/log/logfile.log'
+        self.path_to_log = '/var/logfile.log'
 
     def log_error(self, message, who, datetime):
         self._logg(LogCategory.ERROR, message, who, datetime)
