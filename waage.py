@@ -1,5 +1,6 @@
 from hx711 import HX711
 from machine import Pin
+import json
 
 
 class Waage:
@@ -41,3 +42,6 @@ class Waage:
     def set_count_cells(self, cells: int):
         if cells > 0:
             self.count_cells = cells
+
+    def save_data(self):
+        pass
