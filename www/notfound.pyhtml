@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+{{ title }}
+</title>
+<link rel='stylesheet' href='bootstrap.min.css'>
+<script src="bootstrap.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class='container'>
+<div class='display-4'>
+Requested Page not found
+</div>
+<div class='mt-5'>
+<input type='button' class='btn btn-primary' value='Zurück'>
+</div>
+</div>
+</body>
+</html>
