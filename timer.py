@@ -1,5 +1,6 @@
 from machine import RTC
 
+
 class Timer:
 
     def __init__(self, is_on, period=60, offset=0):
@@ -14,7 +15,7 @@ class Timer:
         self.period = period
         self.offset = offset
         self.rtc = RTC()
-        self.next_time_to_start = self.rtc.datetime()
+        self.next_time_to_start = None
 
     def get_status(self):
         return self.is_on
@@ -39,4 +40,9 @@ class Timer:
 
     def set_time(self, datetime: str):
         self.rtc.datetime(datetime)
+        self.next_time_to_start = self.rtc.datetime() # + period
+
+    def set_next_time(self):
+        year, month, day, hour, minute, second, msecond, usecond = self.rtc.datetime()
+
 

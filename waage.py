@@ -1,5 +1,4 @@
 from hx711 import HX711
-from machine import Pin
 import json
 
 
