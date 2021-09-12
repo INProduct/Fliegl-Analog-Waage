@@ -23,6 +23,9 @@ class App:
         self.waage = Waage()
         self._restore_data()
 
+    def __repr__(self):
+        return "Main-App"
+
     def start(self):
         self.out_pin.on()
         self.run = True

@@ -4,10 +4,12 @@ from microDNSSrv import MicroDNSSrv
 
 a = App()
 
+# ToDo: move domainList to separate config-file
 domainList = {
     '*': '192.168.4.1',
     'biogas.*': '192.168.4.1',
 }
+
 dns = MicroDNSSrv()
 dns.SetDomainsList(domainList)
 dns.Start()
