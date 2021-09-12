@@ -27,7 +27,6 @@ class Logger:
     @classmethod
     def _logg(cls, category: LogCategory, message, who, datetime):
         with open(path_to_log, 'a') as logfile:
-            logfile.write('Hello')
-            # ToDo: write to file
+            logfile.write(str(category) + ',' + message + ',' + str(who) + ',' + str(datetime) + ';')
 
 
