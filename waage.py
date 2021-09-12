@@ -64,14 +64,13 @@ class Waage:
     def restore_data(self):
         try:
             with open(config_file, 'r') as file:
-                js = file.read()
+                js = json.loads(file.read())
+                self.count_cells = js['count_cells']
+                self._zeropoint = js['zeropoint']
+                self._cal_factor = js['cal_factor']
+                self._cal_factor_res = js['cal_factor_res']
+                self.tara_weight = js['tara_weight']
         except:
             # ToDo Logger.log
             return False
-        js = json.loads(js)
-        self.count_cells = js['count_cells']
-        self._zeropoint = js['zeropoint']
-        self._cal_factor = js['cal_factor']
-        self._cal_factor_res = js['cal_factor_res']
-        self.tara_weight = js['tara_weight']
-        return True
+
