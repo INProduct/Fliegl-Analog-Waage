@@ -50,6 +50,8 @@ def _httpHandler_index(httpClient, httpResponse, routeArgs):
         gapp.waage.set_calibration(65)
     elif 'tara' in routeArgs['command']:
         gapp.waage.set_tara()
+    elif 'reset' in routeArgs['command']:
+        gapp.waage.reset_all_data()
     httpResponse.WriteResponsePyHTMLFile('www/waage.pyhtml', vars={
         'weight': str(gapp.waage.get_tared_weight()),
         'portion': str(gapp.get_portion()),

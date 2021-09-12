@@ -25,7 +25,7 @@ class Waage:
         return self.get_unscaled_weight() * self._cal_factor_res
 
     def get_tared_weight(self):
-        return self.get_scaled_weight() - self.tara_weight
+        return self.get_scaled_weight() - self.tara_weight if self.hx711.is_ready() else None
 
     def get_tara(self):
         return self.tara_weight
@@ -47,6 +47,14 @@ class Waage:
         if cells > 0:
             self.count_cells = cells
             self.save_data()
+
+    def reset_all_data(self):
+        self.count_cells = 1
+        self.tara_weight = 0
+        self._cal_factor = 1
+        self._cal_factor_res = 1
+        self._zeropoint = 0
+        self.save_data()
 
     def save_data(self):
         weight_data = {

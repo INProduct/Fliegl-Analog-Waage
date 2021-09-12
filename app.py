@@ -31,7 +31,7 @@ class App:
     def stop(self):
         self.out_pin.off()
         self.run = False
-        Logger.log_info('Start', self.__class__, self.rtc.get_time())
+        Logger.log_info('Stop', self.__class__, self.rtc.get_time())
 
     def start_one_portion(self):
         if self.waage.get_tared_weight() - self.portion_weight <= 0:
