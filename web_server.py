@@ -7,6 +7,11 @@ def set_app(app):
     global gapp
     gapp = app
 
+
+@MicroWebSrv.route('/')
+def _httpHandler_proceed_to_index(httpClient, httpResponse):
+    httpResponse.WriteResponseRedirect('/index')
+
 @MicroWebSrv.route('/notfound')
 def _httpHandler_notfound(httpClient, httpResponse):
     httpResponse.WriteResponsePyHTMLFile('www/notfound.pyhtml', vars={'title':'Not Found'})
