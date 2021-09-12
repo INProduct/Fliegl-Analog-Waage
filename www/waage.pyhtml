@@ -16,28 +16,28 @@
     </div>
     <div>
         <div>
-            Portion
+            Known Weight
         </div>
         <div>
-            {{ portion }} kg
-        </div>
-    </div>
-    <div>
-        <div>
-            <form action="/index/start" method="get">
-                <input type="submit" value="start"/>
-            </form>
-        </div>
-        <div>
-            <form action="/index/stop" method="get">
-                <input type="submit" value="stop"/>
-            </form>
+            65 kg
         </div>
     </div>
     <div>
         <div>
-            <form action="/index/stopor" method="get">
-                <input type="submit" value="start one portion"/>
+            <form action="/waage/zeropoint" method="get">
+                <input type="submit" value="zeropoint"/>
+            </form>
+        </div>
+        <div>
+            <form action="/waage/calibrate" method="get">
+                <input type="submit" value="calibrate"/>
+            </form>
+        </div>
+    </div>
+    <div>
+        <div>
+            <form action="/waage/tara" method="get">
+                <input type="submit" value="tara"/>
             </form>
         </div>
     </div>
