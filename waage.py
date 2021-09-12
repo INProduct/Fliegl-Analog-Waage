@@ -25,7 +25,7 @@ class Waage:
         return self.get_unscaled_weight() * self._cal_factor_res
 
     def get_tared_weight(self):
-        return self.get_scaled_weight() - self.tara_weight
+        return self.get_scaled_weight() - self.tara_weight if self.hx711.is_ready() else None
 
     def get_tara(self):
         return self.tara_weight
@@ -48,6 +48,14 @@ class Waage:
             self.count_cells = cells
             self.save_data()
 
+    def reset_all_data(self):
+        self.count_cells = 1
+        self.tara_weight = 0
+        self._cal_factor = 1
+        self._cal_factor_res = 1
+        self._zeropoint = 0
+        self.save_data()
+
     def save_data(self):
         weight_data = {
             'count_cells': self.count_cells,
@@ -64,14 +72,13 @@ class Waage:
     def restore_data(self):
         try:
             with open(config_file, 'r') as file:
-                js = file.read()
+                js = json.loads(file.read())
+                self.count_cells = js['count_cells']
+                self._zeropoint = js['zeropoint']
+                self._cal_factor = js['cal_factor']
+                self._cal_factor_res = js['cal_factor_res']
+                self.tara_weight = js['tara_weight']
         except:
             # ToDo Logger.log
             return False
-        js = json.loads(js)
-        self.count_cells = js['count_cells']
-        self._zeropoint = js['zeropoint']
-        self._cal_factor = js['cal_factor']
-        self._cal_factor_res = js['cal_factor_res']
-        self.tara_weight = js['tara_weight']
-        return True
+

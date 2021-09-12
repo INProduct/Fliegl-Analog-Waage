@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="container">
+    <div>
+        <div>
+            Waage
+        </div>
+        <div>
+            {{ weight }} kg
+        </div>
+    </div>
+    <div>
+        <div>
+            Known Weight
+        </div>
+        <div>
+            65 kg
+        </div>
+    </div>
+    <div>
+        <div>
+            <form action="/waage/zeropoint" method="get">
+                <input type="submit" value="zeropoint"/>
+            </form>
+        </div>
+        <div>
+            <form action="/waage/calibrate" method="get">
+                <input type="submit" value="calibrate"/>
+            </form>
+        </div>
+    </div>
+    <div>
+        <div>
+            <form action="/waage/tara" method="get">
+                <input type="submit" value="tara"/>
+            </form>
+        </div>
+        <div>
+            <form action="/waage/reset" method="get">
+                <input type="submit" value="reset all data"/>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
