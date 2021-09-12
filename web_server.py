@@ -38,7 +38,7 @@ def _httpHandler_index(httpClient, httpResponse):
         'portion': str(gapp.get_portion()),
     })
 
-@MicroWebSrv.route('/waage/<command>')
+"""@MicroWebSrv.route('/waage/<command>')
 def _httpHandler_index(httpClient, httpResponse, routeArgs):
     print(routeArgs)
     if 'zeropoint' in routeArgs['command']:
@@ -49,16 +49,16 @@ def _httpHandler_index(httpClient, httpResponse, routeArgs):
         gapp.waage.set_tara()
     elif 'reset' in routeArgs['command']:
         gapp.waage.reset_all_data()
-    httpResponse.WriteResponseRedirect('/waage')
+    httpResponse.WriteResponseRedirect('/waage')"""
 
 
 @MicroWebSrv.route('/info')
-def _httpHandler_test(httpClient, httpResponse):
+def _httpHandler_info(httpClient, httpResponse):
     httpResponse.WriteResponsePyHTMLFile('www/info.pyhtml', vars={'title': str(gapp.get_portion())})
 
 
 @MicroWebSrv.route('/settings')
-def _httpHandler_test(httpClient, httpResponse):
+def _httpHandler_settings(httpClient, httpResponse):
     httpResponse.WriteResponsePyHTMLFile('www/settings.pyhtml')
 
 @MicroWebSrv.route('/jquery.min.js')
@@ -74,10 +74,20 @@ def _httpHandler_getbootstrap(httpClient, httpResponse):
 def _httpHandler_getbootstrap(httpClient, httpResponse):
     httpResponse.WriteResponseFile('www/js/bootstrap.min.js', contentType='text/javascript')
 
-@MicroWebSrv.route('/start.pyhtml')
+@MicroWebSrv.route('/ajax_start.pyhtml')
 def _httpHandler_start(httpClient, httpResponse):
     gapp.start()
-    httpResponse.WriteResponseOK()
+    httpResponse.WriteResponseJSONOK(obj=None, headers=None)
+
+@MicroWebSrv.route('/ajax_stop.pyhtml')
+def _httpHandler_stop(httpClient, httpResponse):
+    gapp.stop()
+    httpResponse.WriteResponseJSONOK(obj=None, headers=None)
+
+@MicroWebSrv.route('/ajax_start_one_portion.pyhtml')
+def _httpHandler_stop(httpClient, httpResponse):
+    gapp.start_one_portion()
+    httpResponse.WriteResponseJSONOK(obj=None, headers=None)
 
 @MicroWebSrv.route('/ajax_weight.pyhtml')
 def _httpHandler_ajax_weight(httpClient, httpResponse):

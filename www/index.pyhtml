@@ -24,21 +24,16 @@
     </div>
     <div>
         <div>
-            <form action="/index/start" method="get">
-                <input type="submit" value="start"/>
-            </form>
+                <button onclick="send_start_request()"/> Start </button>
+
         </div>
         <div>
-            <form action="/index/stop" method="get">
-                <input type="submit" value="stop"/>
-            </form>
+                <button onclick="send_stop_request()"/> Stop </button>
         </div>
     </div>
     <div>
         <div>
-            <form action="/index/stopor" method="get">
-                <input type="submit" value="start one portion"/>
-            </form>
+            <button onclick="send_start_one_portion_request()">Eine Portion Starten </button>
         </div>
     </div>
 </div>
@@ -53,6 +48,15 @@
 		$.get('ajax_weight.pyhtml', function(data) {
 			$('#target').html(data);
 		})
+	}
+	function send_start_request(){
+	    $.get("ajax_start.pyhtml");
+	}
+	function send_stop_request(){
+	    $.get("ajax_stop.pyhtml");
+	}
+	function send_start_one_portion_request(){
+	    $.get("ajax_start_one_portion.pyhtml");
 	}
 </script>
 </body>
