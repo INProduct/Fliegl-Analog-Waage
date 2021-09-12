@@ -7,6 +7,7 @@ class Waage:
 
     def __init__(self):
         self.hx711 = HX711(d_out=25, pd_sck=26)
+        self.last_weight = 0
         self.hx711.power_on()
         self.count_cells = 1
         self._zeropoint = 0
@@ -25,7 +26,9 @@ class Waage:
         return self.get_unscaled_weight() * self._cal_factor_res
 
     def get_tared_weight(self):
-        return self.get_scaled_weight() - self.tara_weight if self.hx711.is_ready() else None
+        if self.hx711.is_ready():
+            self.last_weight = self.get_scaled_weight()
+        return self.last_weight - self.tara_weight
 
     def get_tara(self):
         return self.tara_weight

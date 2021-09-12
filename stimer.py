@@ -39,6 +39,11 @@ class STimer:
         return self.rtc.datetime()
 
     def set_time(self, datetime: str):
+        """
+
+        :param datetime: year, month, day, hour, minute, second, msecond, usecond
+        :return:
+        """
         self.rtc.datetime(datetime)
         self.next_time_to_start = self.rtc.datetime() # + period
 

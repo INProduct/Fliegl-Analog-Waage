@@ -25,7 +25,7 @@ def _httpHandler_index(httpClient, httpResponse):
         'portion': str(gapp.get_portion()),
     })
 
-@MicroWebSrv.route('/index/<command>')
+"""@MicroWebSrv.route('/index/<command>')
 def _httpHandler_index(httpClient, httpResponse, routeArgs):
     print(routeArgs)
     if 'start' in routeArgs['command']:
@@ -34,7 +34,7 @@ def _httpHandler_index(httpClient, httpResponse, routeArgs):
         gapp.start_one_portion()
     elif 'stop' in routeArgs['command']:
         gapp.stop()
-    httpResponse.WriteResponseRedirect('/index')
+    httpResponse.WriteResponseRedirect('/index')"""
 
 @MicroWebSrv.route('/waage')
 def _httpHandler_index(httpClient, httpResponse):

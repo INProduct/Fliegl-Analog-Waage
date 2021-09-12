@@ -9,10 +9,11 @@ domainList = {
     '*': '192.168.4.1',
     'biogas.*': '192.168.4.1',
 }
-
+"""
 dns = MicroDNSSrv()
 dns.SetDomainsList(domainList)
 dns.Start()
+"""
 
 web_server.set_app(a)
 web_server.startWebServer()

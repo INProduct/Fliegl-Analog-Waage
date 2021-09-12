@@ -26,6 +26,9 @@ class App:
     def __repr__(self):
         return "Main-App"
 
+    def __str__(self):
+        return 'Main'
+
     def start(self):
         self.out_pin.on()
         self.run = True
