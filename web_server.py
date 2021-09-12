@@ -29,10 +29,7 @@ def _httpHandler_index(httpClient, httpResponse, routeArgs):
         gapp.start_one_portion()
     elif 'stop' in routeArgs['command']:
         gapp.stop()
-    httpResponse.WriteResponsePyHTMLFile('www/index.pyhtml', vars={
-        'weight': str(gapp.waage.get_tared_weight()),
-        'portion': str(gapp.get_portion()),
-    })
+    httpResponse.WriteResponseRedirect('/index')
 
 @MicroWebSrv.route('/waage')
 def _httpHandler_index(httpClient, httpResponse):
@@ -52,10 +49,7 @@ def _httpHandler_index(httpClient, httpResponse, routeArgs):
         gapp.waage.set_tara()
     elif 'reset' in routeArgs['command']:
         gapp.waage.reset_all_data()
-    httpResponse.WriteResponsePyHTMLFile('www/waage.pyhtml', vars={
-        'weight': str(gapp.waage.get_tared_weight()),
-        'portion': str(gapp.get_portion()),
-    })
+    httpResponse.WriteResponseRedirect('/waage')
 
 
 @MicroWebSrv.route('/info')
@@ -67,6 +61,9 @@ def _httpHandler_test(httpClient, httpResponse):
 def _httpHandler_test(httpClient, httpResponse):
     httpResponse.WriteResponsePyHTMLFile('www/settings.pyhtml')
 
+@MicroWebSrv.route('/jquery.min.js')
+def _httpHandler_getjquery(httpClient, httpResponse):
+    httpResponse.WriteResponseFile('www/js/jquery.min.js', contentType='text/javascript')
 
 @MicroWebSrv.route('/bootstrap.min.css')
 def _httpHandler_getbootstrap(httpClient, httpResponse):
@@ -81,6 +78,10 @@ def _httpHandler_getbootstrap(httpClient, httpResponse):
 def _httpHandler_start(httpClient, httpResponse):
     gapp.start()
     httpResponse.WriteResponseOK()
+
+@MicroWebSrv.route('/ajax_weight.pyhtml')
+def _httpHandler_ajax_weight(httpClient, httpResponse):
+    httpResponse.WriteResponseJSONOk(obj=str(gapp.waage.get_tared_weight()), headers=None)
 
 
 def startWebServer():

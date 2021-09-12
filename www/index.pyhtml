@@ -42,5 +42,18 @@
         </div>
     </div>
 </div>
+<div id="target"> Die Inhalte in diesem Container werden nach dem Klick auf den Button mit den Inhalten aus der Datei <code>source.html</code> überschrieben. </div>
+<p>
+  <button onclick="kb_source_2_target()">Hier klicken</button>
+</p>
+<script src="jquery.min.js" type="text/javascript"></script>
+<script>
+    window.setInterval(kb_source_2_target, 1000);
+	function kb_source_2_target() {
+		$.get('ajax_weight.pyhtml', function(data) {
+			$('#target').html(data);
+		})
+	}
+</script>
 </body>
 </html>
